@@ -19,6 +19,8 @@ export default function ReferralPage({ user, onPageChange }: ReferralPageProps) 
       if (snap.exists()) {
         setAppSettings(snap.data());
       }
+    }, (err) => {
+      console.warn('Referral settings listener notice:', err.message);
     });
     return () => unsub();
   }, []);

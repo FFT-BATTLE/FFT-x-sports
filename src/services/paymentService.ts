@@ -22,6 +22,8 @@ class PaymentService {
         this.activeGateway = null;
         console.warn('[PaymentService] No active payment gateway found');
       }
+    }, (error) => {
+      console.warn('[PaymentService] Payment settings stream notice:', error.message);
     });
   }
 

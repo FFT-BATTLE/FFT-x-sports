@@ -24,6 +24,8 @@ export default function Leaderboard() {
         return acc;
       }, {} as Record<string, User>);
       setAllUsers(usersMap);
+    }, (err) => {
+      console.warn('Leaderboard users listener notice:', err.message);
     });
     return () => unsub();
   }, []);

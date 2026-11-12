@@ -41,7 +41,7 @@ service cloud.firestore {
 
     // Game Modes: Dynamic game mode configurations
     match /gameModes/{modeId} {
-      allow read, get, list: if isSignedIn();
+      allow read, get, list: if true;
       allow create, update: if isAdmin() && isValidGameMode(request.resource.data);
       allow delete: if isAdmin();
     }
@@ -123,19 +123,19 @@ service cloud.firestore {
 
     // Match Results: Declared winners and scores
     match /matchResults/{matchId} {
-      allow read, list, get: if isSignedIn();
+      allow read, list, get: if true;
       allow write: if isAdmin();
     }
 
     // Payment Settings: Gateway configurations
     match /paymentSettings/{gatewayId} {
-      allow read, get, list: if isSignedIn();
+      allow read, get, list: if true;
       allow write: if isAdmin();
     }
 
     // Notifications: Push alerts & broadcast messages
     match /notifications/{notificationId} {
-      allow read, get, list: if isSignedIn();
+      allow read, get, list: if true;
       allow write: if isAdmin() || (isSignedIn() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['readBy']));
     }
 
